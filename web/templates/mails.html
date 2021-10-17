@@ -1,0 +1,93 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- start page title -->
+<div class="row">
+  <div class="col-12">
+    <div class="
+        page-title-box
+        d-sm-flex
+        align-items-center
+        justify-content-between
+      ">
+      <h4 class="mb-sm-0 font-size-18">All Mails</h4>
+
+      <div class="page-title-right">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active">All Mails</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end page title -->
+
+<div class="row align-items-center">
+  <div class="col-md-6">
+    <div class="mb-3">
+      <h5 class="card-title">Mail List <span class="text-muted fw-normal ms-2">({{ mails|length }})</span></h5>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+      <div>
+        <a href="{% url 'deleteNetwork' %}" class="btn btn-light"><i class="bx bx-minus me-1"></i> Delete All</a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!-- end row -->
+{% if messages %}
+                                <ul class="messages" style="list-style: none;">
+                                    {% for message in messages %}
+                                        <li {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}> {{ message }} </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+<div class="table-responsive mb-4">
+  <table class="table align-middle datatable dt-responsive table-check nowrap"
+    style="border-collapse: collapse; border-spacing: 0 8px; width: 100%;">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 50px;">
+          <div class="form-check font-size-16">
+            <input type="checkbox" class="form-check-input" id="checkAll">
+            <label class="form-check-label" for="checkAll"></label>
+          </div>
+        </th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Domain</th>
+        <th scope="col">Verified</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for m in mails %}
+      <tr>
+        <th scope="row">
+          <div class="form-check font-size-16">
+            <input type="checkbox" class="form-check-input" id="contacusercheck1">
+            <label class="form-check-label" for="contacusercheck1"></label>
+          </div>
+        </th>
+        <td>
+          <a href="#" class="text-body">{{ m.name|capfirst }}</a>
+        </td>
+        <td>{{ m.email }}</td>
+        <td>{{m.domain}}</td>
+        <td>
+            <p class="badge badge-soft-success">True</p>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <!-- end table -->
+</div>
+<!-- end table responsive -->
+
+{% endblock %}

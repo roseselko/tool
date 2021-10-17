@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- start page title -->
+<div class="row">
+  <div class="col-12">
+    <div
+      class="
+        page-title-box
+        d-sm-flex
+        align-items-center
+        justify-content-between
+      "
+    >
+      <h4 class="mb-sm-0 font-size-18">Home</h4>
+
+      <div class="page-title-right">
+        <ol class="breadcrumb m-0">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active">Upload Mails</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Dropzone</h4>
+                                        <p class="card-title-desc">DropzoneJS is an open source library
+                                            that provides drag’n’drop file uploads with image previews.
+                                        </p>
+                                    </div>
+                                    <div class="card-body">
+    
+                                        <div>
+                                            <form method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                                    <input id="mailUpload" class="form-control" name="email" type="file" accept="text/plain">
+                                                <div class="text-center mt-4">
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Upload</button>
+                                        </div>
+                                            </form>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->
+
+{% endblock content %}
